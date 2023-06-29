@@ -9,10 +9,12 @@ Template.createjob.events({
   "submit #createJobForm": function (event, template) {
     event.preventDefault();
     let title = $("#title").val();
-    let companyname = $("#companyname").val();
     let typeofemployment = $("#typeofemployment").val();
     let salary = $("#salary").val();
     let description = $("#description").val();
+    let skills = $("#skills").val();
+    let skillsArray = skills.split(",");
+    let experience = $("#experience").val();
 
     let jobData = {
       _id: Random.id(),
@@ -23,6 +25,8 @@ Template.createjob.events({
       typeofemployment: typeofemployment,
       salary: salary,
       description: description,
+      skills: skillsArray,
+      experience,
     };
 
     jobValidationText.reset();

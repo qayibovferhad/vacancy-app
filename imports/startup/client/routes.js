@@ -62,3 +62,14 @@ FlowRouter.route("/findjob", {
     });
   },
 });
+
+import "../../ui/pages/jobapplication/jobdetail";
+FlowRouter.route("/jobdetail/:_id", {
+  name: "App.jobdetail",
+  action() {
+    BlazeLayout.render("mainLayout", {
+      main: "jobdetail",
+      login: "jobdetail",
+    });
+  },
+});

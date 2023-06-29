@@ -1,21 +1,20 @@
 <template name="home">
   <div class="all-jobs">
-    <div class="container">
+    <div class="container mt-5">
       <div class="row">
         {{#each allJobs}}
-        <div class="card col-lg-3 mx-4 mt-4" style="width: 18rem">
+        <div class="card col-lg-3 mx-2 mt-4" style="width: 18rem">
           <div class="card-body">
             <h4 class="card-title">Position: {{title}}</h4>
             <h6 class="card-title">Company Name: {{companyname}}</h6>
             <h6 class="card-title">Type of Employment: {{typeofemployment}}</h6>
             <h6 class="card-title">Salary: {{salary}}$</h6>
-            <!-- <p class="card-title">Description: {{description}}</p> -->
             <h6 class="card-title">Date: {{formatDate createdAt}}</h6>
             <h6 class="card-title">Ceo Name: {{getCeoName ownCeoId}}</h6>
             {{#if currentUserType}}
             <a class="btn btn-success">Apply</a>
             {{/if}}
-            <a class="btn btn-primary">Job detail</a>
+            <a href="/jobdetail/{{_id}}" class="btn btn-primary">Job detail</a>
           </div>
         </div>
         {{/each}}

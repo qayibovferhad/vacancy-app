@@ -1,5 +1,4 @@
 import "./findjob.html";
-// Template.findjob.onCreated
 Template.findjob.events({
   "click #editCv": function (event, template) {
     $("#editCvForm").toggleClass("d-none");
@@ -13,7 +12,6 @@ Template.findjob.events({
     let experience = $("#experience").val();
     let education = $("#education").val();
     let skillsArr = skills.split(",");
-    console.log(skillsArr);
     let data = {
       position,
       skillsArr,

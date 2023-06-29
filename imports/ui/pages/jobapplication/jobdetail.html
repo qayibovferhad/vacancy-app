@@ -1,0 +1,19 @@
+<template name="jobdetail">
+  <h1>Product Detail Page</h1>
+  {{#with getCurrentJob}}
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <h4 class="card-title">Position: {{title}}</h4>
+      <h6 class="card-title">Company Name: {{companyname}}</h6>
+      <h6 class="card-title">Type of Employment: {{typeofemployment}}</h6>
+      <h6 class="card-title">Salary: {{salary}}$</h6>
+      <h6 class="card-title">Experience: {{experience}} year</h6>
+      <h6 class="card-title">Skills: {{getSkills}}</h6>
+      <p class="card-title">Description: {{description}}</p>
+      {{#if currentUserType}}
+      <a class="btn btn-success">Apply</a>
+      {{/if}}
+    </div>
+  </div>
+  {{/with}}
+</template>

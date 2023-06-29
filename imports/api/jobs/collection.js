@@ -31,6 +31,14 @@ Schema.Job = new SimpleSchema({
       return new Date();
     },
   },
+  experience: {
+    type: Number,
+  },
+  skills: {
+    type: Array,
+    minCount: 1,
+  },
+  "skills.$": String,
 });
 
 export const jobValidationText = Schema.Job.namedContext("job");
