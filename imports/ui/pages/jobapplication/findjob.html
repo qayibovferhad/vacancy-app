@@ -1,0 +1,63 @@
+<template name="findjob">
+  <h1 class="text-center mt-4">My Applications</h1>
+  <button class="btn btn-primary" id="editCv">Edit Your Info</button>
+  <button class="btn btn-primary" id="uploadCv">Upload Cv</button>
+  <form class="d-none" id="editCvForm">
+    <div class="form-group">
+      <label for="age">Your Age</label>
+      <input
+        type="number"
+        class="form-control"
+        name="age"
+        id="age"
+        aria-describedby="emailHelp"
+        placeholder="Your Age"
+      />
+    </div>
+    <div class="form-group">
+      <label for="education">Your Education</label>
+      <input
+        type="text"
+        class="form-control"
+        name="education"
+        id="education"
+        aria-describedby="emailHelp"
+        placeholder="Your Education"
+      />
+    </div>
+    <div class="form-group">
+      <label for="position">Position</label>
+      <input
+        type="text"
+        class="form-control"
+        name="position"
+        id="position"
+        aria-describedby="emailHelp"
+        placeholder="Your Position"
+      />
+    </div>
+    <div class="form-group">
+      <label for="skills">Skills</label>
+      <input
+        type="text"
+        class="form-control"
+        name="skills"
+        id="skills"
+        aria-describedby="emailHelp"
+        placeholder="Your Skills"
+      />
+    </div>
+    <div class="form-group">
+      <label for="experience">Your Experience(year)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="experience"
+        id="experience"
+        aria-describedby="emailHelp"
+        placeholder="Your Experience"
+      />
+    </div>
+    <button type="submit" class="btn btn-success mt-2">Submit</button>
+  </form>
+</template>

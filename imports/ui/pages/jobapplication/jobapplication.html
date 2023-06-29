@@ -1,0 +1,35 @@
+<template name="jobapplication">
+  <div class="container">
+    <div class="row">
+      <div class="my-job-applications mt-4">
+        <h1 class="text-center">My Job Applications</h1>
+        <div class="full-jobs">
+          <div class="row">
+            {{#each myJobs}}
+            <div class="card col-lg-3 mx-4 mt-4" style="width: 18rem">
+              <div class="card-body">
+                <h4 class="card-title">Position: {{title}}</h4>
+                <h6 class="card-title">Company Name: {{companyname}}</h6>
+                <h6 class="card-title">
+                  Type of Employment: {{typeofemployment}}
+                </h6>
+                <h6 class="card-title">Salary: {{salary}}$</h6>
+                <p class="card-text">Description: {{description}}</p>
+                <div class="card-buttons">
+                  <button class="btn btn-warning">Edit</button>
+                  <button class="btn btn-danger" id="removeJob">Remove</button>
+                </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+        <div class="create-job d-flex justify-content-center">
+          <a href="/createjob" class="text-center btn btn-success mt-5"
+            >Create a job application</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

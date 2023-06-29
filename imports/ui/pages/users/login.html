@@ -1,0 +1,32 @@
+<template name="login">
+  <h1 class="text-center">Login</h1>
+  <form id="loginForm">
+    <div class="form-group">
+      <label for="firstname">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        name="username"
+        id="username"
+        aria-describedby="emailHelp"
+        placeholder="Username"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        placeholder="Password"
+      />
+    </div>
+    <div class="row">
+      <a href="/register">Does not have an account?</a>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+  </form>
+</template>

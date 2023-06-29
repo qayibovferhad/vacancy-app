@@ -1,0 +1,64 @@
+<template name="register">
+  <h1 class="text-center">Register</h1>
+  <form id="registerForm">
+    <div class="form-group">
+      <label for="firstname">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="firstname"
+        id="firstname"
+        aria-describedby="emailHelp"
+        placeholder="First Name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="lastname">Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="lastname"
+        id="lastname"
+        placeholder="Last Name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="lastname">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        name="username"
+        id="username"
+        placeholder="Username"
+      />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        name="email"
+        id="email"
+        placeholder="Email Address"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        placeholder="Password"
+      />
+    </div>
+    <div class="form-group mt-3 mx-2">
+      <label for="ceo"><h6>Ceo</h6></label>
+      <input type="radio" name="type" id="ceo" value="ceo" />
+      <label for="user"><h6>User</h6></label>
+      <input type="radio" name="type" id="user" value="user" />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    <div class="alertWindow text-center text-danger"></div>
+  </form>
+</template>

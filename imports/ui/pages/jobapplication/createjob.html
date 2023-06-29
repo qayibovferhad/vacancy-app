@@ -1,0 +1,61 @@
+<template name="createjob">
+  <h1 class="text-center mt-4">Create a job</h1>
+  <form id="createJobForm">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        name="title"
+        id="title"
+        aria-describedby="emailHelp"
+        placeholder="Title"
+      />
+    </div>
+    <div class="form-group">
+      <label for="companyname">Company Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="companyname"
+        id="companyname"
+        aria-describedby="emailHelp"
+        placeholder="Company"
+      />
+    </div>
+    <div class="form-group">
+      <label for="typeofemployment">Type of employment</label>
+      <input
+        type="text"
+        class="form-control"
+        name="typeofemployment"
+        id="typeofemployment"
+        aria-describedby="emailHelp"
+        placeholder="Type of employment"
+      />
+    </div>
+    <div class="form-group">
+      <label for="salary">Salary</label>
+      <input
+        type="number"
+        class="form-control"
+        name="salary"
+        id="salary"
+        aria-describedby="emailHelp"
+        placeholder="Salary"
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input
+        type="text"
+        class="form-control"
+        name="description"
+        id="description"
+        aria-describedby="emailHelp"
+        placeholder="Description"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+  </form>
+</template>
