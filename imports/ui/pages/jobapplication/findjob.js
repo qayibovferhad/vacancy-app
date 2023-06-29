@@ -12,9 +12,11 @@ Template.findjob.events({
     let age = $("#age").val();
     let experience = $("#experience").val();
     let education = $("#education").val();
+    let skillsArr = skills.split(",");
+    console.log(skillsArr);
     let data = {
       position,
-      skills,
+      skillsArr,
       age,
       experience,
       education,

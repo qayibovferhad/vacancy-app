@@ -19,7 +19,7 @@ Template.createjob.events({
       ownCeoId: Meteor.userId(),
       jobId: Random.id(),
       title: title,
-      companyname: companyname,
+      companyname: Meteor.user().profile.company,
       typeofemployment: typeofemployment,
       salary: salary,
       description: description,

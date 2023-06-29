@@ -15,7 +15,6 @@ Template.jobapplication.helpers({
 
 Template.jobapplication.events({
   "click #removeJob": function () {
-    console.log(this);
     Meteor.call("remove.job", this._id);
   },
 });

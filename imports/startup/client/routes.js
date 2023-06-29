@@ -18,7 +18,6 @@ FlowRouter.route("/register", {
   name: "App.register",
   action() {
     BlazeLayout.render("mainLayout", {
-      main: "register",
       login: "register",
     });
   },
@@ -28,7 +27,6 @@ FlowRouter.route("/login", {
   name: "App.login",
   action() {
     BlazeLayout.render("mainLayout", {
-      main: "login",
       login: "login",
     });
   },
@@ -41,7 +39,6 @@ FlowRouter.route("/jobapplication", {
   action() {
     BlazeLayout.render("mainLayout", {
       main: "jobapplication",
-      login: "jobapplication",
     });
   },
 });
@@ -52,7 +49,6 @@ FlowRouter.route("/createjob", {
   action() {
     BlazeLayout.render("mainLayout", {
       main: "createjob",
-      login: "createjob",
     });
   },
 });

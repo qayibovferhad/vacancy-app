@@ -1,6 +1,13 @@
 import "./navigation.html";
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 Template.navigation.helpers({
+  getUserInfo() {
+    const currentUser = Meteor.user();
+    if (currentUser) {
+      return [currentUser];
+    }
+    return [];
+  },
   currentUserCeo() {
     const currentUser = Meteor.user();
     if (currentUser && currentUser.profile && currentUser.profile.typeValue) {

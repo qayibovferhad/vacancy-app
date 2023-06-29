@@ -21,6 +21,15 @@ Template.home.helpers({
     return true;
   },
   allJobs: function () {
+    console.log("Jobs.find({})", Jobs.find({}).fetch());
     return Jobs.find({});
+  },
+  formatDate(date) {
+    return date.toLocaleString();
+  },
+  getCeoName(ownCeoId) {
+    console.log("ownCeoId", ownCeoId);
+    const ceo = Meteor.users.findOne({ _id: ownCeoId });
+    return ceo && ceo.username;
   },
 });

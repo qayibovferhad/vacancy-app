@@ -1,5 +1,13 @@
 import "./register.html";
 Template.register.events({
+  "change input[name='type']": function (event, template) {
+    const typeValue = event.target.value;
+    if (typeValue === "ceo") {
+      document.getElementById("companyInput").className = "d-block";
+    } else {
+      document.getElementById("companyInput").className = "d-none";
+    }
+  },
   "submit #registerForm": function (event, template) {
     event.preventDefault();
     let firstname = $("#firstname").val();
@@ -7,6 +15,7 @@ Template.register.events({
     let username = $("#username").val();
     let email = $("#email").val();
     let password = $("#password").val();
+    let companyName = $("#company").val();
     let typeValue;
     let element = document.getElementsByName("type");
     for (i = 0; i < element.length; i++) {
@@ -14,6 +23,8 @@ Template.register.events({
         typeValue = element[i].value;
       }
     }
+
+    console.log("typeValue: " + typeValue);
     let data = {
       firstname: firstname,
       lastname: lastname,
@@ -22,6 +33,10 @@ Template.register.events({
       password: password,
       typeValue,
     };
+    if (typeValue === "ceo") {
+      companyName = $("#company").val();
+      data.companyName = companyName;
+    }
     if (firstname && lastname && username && email && password && typeValue) {
       Meteor.call("add.user", data);
     } else {

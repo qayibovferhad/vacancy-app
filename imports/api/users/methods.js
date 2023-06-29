@@ -8,6 +8,7 @@ Meteor.methods({
         firstname: data.firstname,
         lastname: data.lastname,
         typeValue: data.typeValue,
+        company: data.companyName,
         registerDate: new Date(),
       },
     });
@@ -22,7 +23,7 @@ Meteor.methods({
       },
       {
         $set: {
-          skills: data.skills,
+          skills: data.skillsArr,
           position: data.position,
           age: data.age,
           education: data.education,
