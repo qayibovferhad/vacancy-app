@@ -41,7 +41,6 @@ Template.home.helpers({
 });
 Template.home.events({
   "click #applyBtn": function () {
-    console.log(Meteor.user());
     let data = {
       _id: Random.id(),
       title: this.title,
@@ -57,7 +56,19 @@ Template.home.events({
       jobId: this.jobId,
       ownCeoId: this.ownCeoId,
     };
-    console.log(data);
-    Meteor.call("add.cv", data);
+    let query = {
+      jobId: data.jobId,
+      userSkills: Meteor.user().profile.skills,
+      wishSkills: this.skills,
+      userExperience: data.experience,
+      wishExperience: this.experience,
+    };
+    Meteor.call("checkCvItem", query, function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        Meteor.call("add.cv", data);
+      }
+    });
   },
 });

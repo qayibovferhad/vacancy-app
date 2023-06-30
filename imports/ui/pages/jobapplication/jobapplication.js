@@ -1,5 +1,6 @@
 import { Jobs } from "../../../api/jobs/collection";
 import "./jobapplication.html";
+
 Template.jobapplication.onCreated(function () {
   this.autorun(() => {
     let query = {
@@ -7,7 +8,11 @@ Template.jobapplication.onCreated(function () {
     };
     this.subscribe("get.jobs", query);
   });
+  this.autorun(() => {
+    this.subscribe("get.cv");
+  });
 });
+
 Template.jobapplication.helpers({
   myJobs: function () {
     return Jobs.find({

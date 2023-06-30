@@ -5,6 +5,7 @@
 
   <form class="d-none" id="editCvForm">
     <p class="mt-3">Please use commas when writing your skills.</p>
+    {{#with }}
     <div class="form-group">
       <label for="age">Your Age</label>
       <input
@@ -80,15 +81,15 @@
         <h4 class="card-title">Position: {{title}}</h4>
         <h6 class="card-title">Company: {{companyname}}</h6>
         <h6 class="card-title">Ceo: {{ceoName}}</h6>
-
         {{#if isAccepted}}
-        <h5 class="card-title text-success">Status: {{status}}</h5>
+        <h5 class="card-title text-success">Status: Accepted</h5>
         <p>Letter from Ceo: {{notes}}</p>
         <button class="btn btn-success" id="okBtn">OK!</button>
-        {{/if}} {{#if isRejected}}
-        <h5 class="card-title text-danger">Status: {{status}}</h5>
-
+        {{else if isRejected}}
+        <h5 class="card-title text-danger">Status: Rejected</h5>
         <button class="btn btn-danger mt-2" id="removeCv">Remove</button>
+        {{else}}
+        <h6 class="card-title text-muted">Status: {{status}}</h6>
         {{/if}}
       </div>
     </div>

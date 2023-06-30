@@ -26,3 +26,33 @@ Meteor.methods({
     Cv.update(cvId, updateQuery);
   },
 });
+Meteor.methods({
+  checkCvItem(query) {
+    const userId = Meteor.userId();
+    const existingItem = Cv.findOne({
+      userId: query.userId,
+      jobId: query.jobId,
+    });
+    if (existingItem) {
+      throw new Meteor.Error(
+        "item-already-exists",
+        "The item already exists in the cv ."
+      );
+    }
+
+    function checkCommonElement(arr1, arr2) {
+      for (let i = 0; i < arr1.length; i++) {
+        if (arr2.includes(arr1[i])) {
+          return true;
+        }
+      }
+      return false;
+    }
+    if (!checkCommonElement(query.userSkills, query.wishSkills)) {
+      throw new Meteor.Error("Your skills are not allowed to be applied");
+    }
+    if (query.userExperience < query.wishExperience) {
+      throw new Meteor.Error("Your experience is not allowed to be applied");
+    }
+  },
+});
