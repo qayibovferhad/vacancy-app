@@ -5,3 +5,8 @@ Meteor.methods({
     return Cv.insert(data);
   },
 });
+Meteor.methods({
+  "remove.cv": function (cvId) {
+    return Cv.remove(cvId);
+  },
+});

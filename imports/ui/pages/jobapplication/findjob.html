@@ -2,7 +2,7 @@
   <h1 class="text-center mt-4">My Applications</h1>
   <h6>Enter your information to find a job faster</h6>
   <button class="btn btn-primary" id="editCv">Edit Your Info</button>
-  <button class="btn btn-primary" id="uploadCv">Upload CV</button>
+
   <form class="d-none" id="editCvForm">
     <p class="mt-3">Please use commas when writing your skills.</p>
     <div class="form-group">
@@ -60,6 +60,17 @@
         placeholder="Your Experience"
       />
     </div>
+    <div class="form-group">
+      <label for="experience">Upload Your Cv</label>
+      <input
+        type="file"
+        class="form-control"
+        name="fileUpload"
+        id="fileUpload"
+        aria-describedby="emailHelp"
+        placeholder="Your Cv"
+      />
+    </div>
     <button type="submit" class="btn btn-success mt-2">Submit</button>
   </form>
   <div class="myApplies">
@@ -67,9 +78,11 @@
     <div class="card col-lg-3 mx-2 mt-4" style="width: 18rem">
       <div class="card-body">
         <h4 class="card-title">Position: {{title}}</h4>
-        <h4 class="card-title">Company: {{companyname}}</h4>
-        <h4 class="card-title">Ceo: {{ceoName}}</h4>
-        <h6 class="card-title">Status: {{status}}</h6>
+        <h6 class="card-title">Company: {{companyname}}</h6>
+        <h6 class="card-title">Ceo: {{ceoName}}</h6>
+
+        <h6 class="card-title text-danger">Status: {{status}}</h6>
+        <button class="btn btn-danger mt-2" id="removeCv">Cancel</button>
       </div>
     </div>
     {{/each}}

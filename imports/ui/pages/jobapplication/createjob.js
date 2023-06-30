@@ -17,6 +17,7 @@ Template.createjob.events({
     let skillsArray = skills.split(",");
     let experience = $("#experience").val();
     console.log(Meteor.user());
+
     let jobData = {
       _id: Random.id(),
       ceoName: Meteor.user().username,
@@ -30,7 +31,6 @@ Template.createjob.events({
       skills: skillsArray,
       experience,
     };
-    console.log(jobData);
 
     jobValidationText.reset();
     jobData = jobValidationText.clean(jobData);

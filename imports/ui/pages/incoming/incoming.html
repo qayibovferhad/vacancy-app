@@ -3,9 +3,11 @@
   {{#each getMyIncoming}}
   <div class="card col-lg-3 mx-2 mt-4" style="width: 18rem">
     <div class="card-body">
+      <img width="250px" height="250px" src="{{getImg imgId}}" alt="" />
       <h4 class="card-title">Position: {{title}}</h4>
       <h6 class="card-title">Username: {{username}}</h6>
       <h6 class="card-title">Age: {{age}}</h6>
+      <h6 class="card-title">Experience: {{experience}} year</h6>
       <button class="btn btn-success">Accept</button>
       <button class="btn btn-danger">Reject</button>
     </div>

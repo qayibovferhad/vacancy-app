@@ -28,6 +28,7 @@ Meteor.methods({
           "profile.age": data.age,
           "profile.education": data.education,
           "profile.experience": data.experience,
+          "profile.imgId": data.imgId,
         },
       }
     );

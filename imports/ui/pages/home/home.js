@@ -47,14 +47,17 @@ Template.home.events({
       title: this.title,
       companyname: this.companyname,
       ceoName: this.ceoName,
+      imgId: Meteor.user().profile.imgId,
       username: Meteor.user().username,
       age: Meteor.user().profile.age,
+      experience: Meteor.user().profile.experience,
       status: "pending",
       userId: Meteor.userId(),
       cvId: Random.id(),
       jobId: this.jobId,
       ownCeoId: this.ownCeoId,
     };
+    console.log(data);
     Meteor.call("add.cv", data);
   },
 });
