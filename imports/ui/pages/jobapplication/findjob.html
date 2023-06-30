@@ -81,8 +81,15 @@
         <h6 class="card-title">Company: {{companyname}}</h6>
         <h6 class="card-title">Ceo: {{ceoName}}</h6>
 
-        <h6 class="card-title text-danger">Status: {{status}}</h6>
-        <button class="btn btn-danger mt-2" id="removeCv">Cancel</button>
+        {{#if isAccepted}}
+        <h5 class="card-title text-success">Status: {{status}}</h5>
+        <p>Letter from Ceo: {{notes}}</p>
+        <button class="btn btn-success" id="okBtn">OK!</button>
+        {{/if}} {{#if isRejected}}
+        <h5 class="card-title text-danger">Status: {{status}}</h5>
+
+        <button class="btn btn-danger mt-2" id="removeCv">Remove</button>
+        {{/if}}
       </div>
     </div>
     {{/each}}

@@ -1,6 +1,7 @@
 import { Cv, Cv_Files } from "../../../api/cv/collection";
 import { Random } from "meteor/random";
 import "./findjob.html";
+
 Template.findjob.onCreated(function () {
   this.loading = new ReactiveVar(false);
   this.autorun(() => {
@@ -13,9 +14,18 @@ Template.findjob.helpers({
   },
   getMyApplies: function () {
     let userId = Meteor.userId();
-    return Cv.find({ userId });
+    return Cv.find({ userId }).map(function (cv) {
+      let status = cv.status;
+      if (status === "accepted") {
+        cv.isAccepted = true;
+      } else if (status === "rejected") {
+        cv.isRejected = true;
+      }
+      return cv;
+    });
   },
 });
+
 Template.findjob.events({
   "click #removeCv": function () {
     Meteor.call("remove.cv", this._id);
@@ -72,5 +82,8 @@ Template.findjob.events({
     upload.start();
 
     document.getElementById("editCvForm").className = "d-none";
+  },
+  "click #okBtn": function () {
+    Meteor.call("remove.cv", this._id);
   },
 });

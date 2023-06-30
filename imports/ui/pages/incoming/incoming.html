@@ -1,16 +1,49 @@
 <template name="incoming">
   <h1 class="text-center">Incoming</h1>
-  {{#each getMyIncoming}}
-  <div class="card col-lg-3 mx-2 mt-4" style="width: 18rem">
-    <div class="card-body">
-      <img width="250px" height="250px" src="{{getImg imgId}}" alt="" />
-      <h4 class="card-title">Position: {{title}}</h4>
-      <h6 class="card-title">Username: {{username}}</h6>
-      <h6 class="card-title">Age: {{age}}</h6>
-      <h6 class="card-title">Experience: {{experience}} year</h6>
-      <button class="btn btn-success">Accept</button>
-      <button class="btn btn-danger">Reject</button>
+  <div class="row">
+    {{#each getMyIncoming}}
+    <div class="card col-lg-3 mx-2 mt-4" style="width: 18rem">
+      <div class="card-body">
+        <p>{{getImg imgId}}</p>
+        <button class="btn btn-primary mb-3" id="downloadCv" data-cv="{{_id}}">
+          Download CV
+        </button>
+        <h4 class="card-title">Position: {{title}}</h4>
+        <h6 class="card-title">Username: {{username}}</h6>
+        <h6 class="card-title">Age: {{age}}</h6>
+        <h6 class="card-title">Experience: {{experience}} year</h6>
+        {{#if isAccepted}}
+        <p class="h6 mt-3 text-success">Your letter has been sent. Thank you</p>
+        {{else}} {{#if isRejected}}
+        <p class="h6 mt-3 text-danger">
+          This vacancy has been canceled and will be removed from your incoming
+          page soon
+        </p>
+        {{else}}
+        <div class="buttons">
+          <button
+            class="btn btn-success acceptBtn"
+            id="acceptCv"
+            data-cv="{{this._id}}"
+          >
+            Accept
+          </button>
+
+          <button class="btn btn-danger rejectBtn" id="rejectCv-{{this._id}}">
+            Reject
+          </button>
+        </div>
+        <form class="d-flex my-3 d-none acceptForm" id="acceptForm-{{_id}}">
+          <input
+            type="text"
+            class="acceptInput"
+            placeholder="Please take a note for the user..."
+          />
+          <button type="submit" class="btn btn-success">Accept</button>
+        </form>
+        {{/if}} {{/if}}
+      </div>
     </div>
+    {{/each}}
   </div>
-  {{/each}}
 </template>

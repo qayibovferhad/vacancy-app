@@ -1,10 +1,5 @@
 import { Cv, Cv_Files } from "./collection";
 
-// Meteor.publish({
-//   "get.cv": function (query = {}) {
-//     return Cv.find(query);
-//   },
-// });
 Meteor.publishComposite("get.cv", function (query = {}) {
   return {
     find() {
@@ -27,3 +22,8 @@ Meteor.publishComposite("get.cv", function (query = {}) {
 
 //     }
 // })
+// Meteor.publish({
+//   "get.cv": function (query = {}) {
+//     return Cv.find(query);
+//   },
+// });
