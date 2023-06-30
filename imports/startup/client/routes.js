@@ -73,3 +73,14 @@ FlowRouter.route("/jobdetail/:_id", {
     });
   },
 });
+
+import "../../ui/pages/incoming/incoming";
+FlowRouter.route("/incoming", {
+  name: "App.incoming",
+  action() {
+    BlazeLayout.render("mainLayout", {
+      main: "incoming",
+      login: "incoming",
+    });
+  },
+});

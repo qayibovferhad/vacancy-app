@@ -8,6 +8,7 @@ Template.createjob.onCreated(function () {
 Template.createjob.events({
   "submit #createJobForm": function (event, template) {
     event.preventDefault();
+
     let title = $("#title").val();
     let typeofemployment = $("#typeofemployment").val();
     let salary = $("#salary").val();
@@ -15,9 +16,10 @@ Template.createjob.events({
     let skills = $("#skills").val();
     let skillsArray = skills.split(",");
     let experience = $("#experience").val();
-
+    console.log(Meteor.user());
     let jobData = {
       _id: Random.id(),
+      ceoName: Meteor.user().username,
       ownCeoId: Meteor.userId(),
       jobId: Random.id(),
       title: title,
@@ -28,6 +30,7 @@ Template.createjob.events({
       skills: skillsArray,
       experience,
     };
+    console.log(jobData);
 
     jobValidationText.reset();
     jobData = jobValidationText.clean(jobData);

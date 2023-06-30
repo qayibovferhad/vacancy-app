@@ -2,7 +2,10 @@ import { Jobs } from "../../../api/jobs/collection";
 import "./jobapplication.html";
 Template.jobapplication.onCreated(function () {
   this.autorun(() => {
-    this.subscribe("get.jobs");
+    let query = {
+      ownCeoId: Meteor.userId(),
+    };
+    this.subscribe("get.jobs", query);
   });
 });
 Template.jobapplication.helpers({

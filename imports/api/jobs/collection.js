@@ -7,6 +7,9 @@ Schema.Job = new SimpleSchema({
   ownCeoId: {
     type: String,
   },
+  ceoName: {
+    type: String,
+  },
   jobId: {
     type: String,
   },

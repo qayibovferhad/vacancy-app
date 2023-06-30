@@ -23,11 +23,11 @@ Meteor.methods({
       },
       {
         $set: {
-          skills: data.skillsArr,
-          position: data.position,
-          age: data.age,
-          education: data.education,
-          experience: data.experience,
+          "profile.skills": data.skillsArr,
+          "profile.position": data.position,
+          "profile.age": data.age,
+          "profile.education": data.education,
+          "profile.experience": data.experience,
         },
       }
     );

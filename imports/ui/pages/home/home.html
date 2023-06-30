@@ -10,9 +10,9 @@
             <h6 class="card-title">Type of Employment: {{typeofemployment}}</h6>
             <h6 class="card-title">Salary: {{salary}}$</h6>
             <h6 class="card-title">Date: {{formatDate createdAt}}</h6>
-            <h6 class="card-title">Ceo Name: {{getCeoName ownCeoId}}</h6>
+            <h6 class="card-title">Ceo Name: {{ceoName}}</h6>
             {{#if currentUserType}}
-            <a class="btn btn-success">Apply</a>
+            <a class="btn btn-success" id="applyBtn">Apply</a>
             {{/if}}
             <a href="/jobdetail/{{_id}}" class="btn btn-primary">Job detail</a>
           </div>
