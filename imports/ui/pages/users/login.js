@@ -1,4 +1,6 @@
 import "./login.html";
+import { FlowRouter } from "meteor/ostrio:flow-router-extra";
+
 Template.login.events({
   "submit #loginForm": function (event, template) {
     event.preventDefault();
@@ -8,5 +10,6 @@ Template.login.events({
     Meteor.loginWithPassword(username, password, function (err) {
       console.log("err", err);
     });
+    FlowRouter.go("/");
   },
 });

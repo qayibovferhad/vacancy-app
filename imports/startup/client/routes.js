@@ -5,12 +5,24 @@ const checkCurrentUserAndUser = (context, redirect) => {
   const currentUser = Meteor.userId();
   if (!currentUser) {
     redirect("/login");
+  } else {
+    const currentUserType = Meteor.user()?.profile?.typeValue;
+    console.log(currentUserType);
+    if (currentUserType !== "user") {
+      redirect("/");
+    }
   }
 };
 const checkCurrentUserAndCeo = (context, redirect) => {
   const currentUser = Meteor.userId();
   if (!currentUser) {
     redirect("/login");
+  } else {
+    const currentUserType = Meteor.user()?.profile?.typeValue;
+    console.log(currentUserType);
+    if (currentUserType !== "ceo") {
+      redirect("/");
+    }
   }
 };
 const checkLoginUser = (context, redirect) => {
