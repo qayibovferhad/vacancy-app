@@ -1,6 +1,7 @@
 <template name="home">
   <div class="all-jobs">
     <div class="container mt-5">
+      {{#if currentUser}}
       <div class="row">
         {{#each allJobs}}
         <div class="card col-lg-3 mx-2 mt-4" style="width: 18rem">
@@ -20,6 +21,19 @@
         {{/each}}
       </div>
       <div id="alertWindow"></div>
+      {{else}}
+      <section class="home">
+        <h1 class="text-center">Welcome our site</h1>
+        <h1 class="text-center">
+          If you want to find a job, you are at the right address
+        </h1>
+        <div>
+          <a href="/login" class="registerButton">Login</a>
+          <a href="/register" class="registerButton">Register</a>
+        </div>
+      </section>
+
+      {{/if}}
     </div>
   </div>
 </template>

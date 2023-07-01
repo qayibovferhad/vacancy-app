@@ -4,7 +4,10 @@ import "./home.html";
 Template.home.onCreated(function () {
   this.ceoName = new ReactiveVar();
   this.autorun(() => {
-    this.subscribe("get.cv");
+    let query = {
+      ownCeoId: Meteor.userId(),
+    };
+    this.subscribe("get.cv", query);
   });
   this.autorun(() => {
     this.subscribe("get.jobs");
@@ -41,15 +44,10 @@ Template.home.helpers({
 });
 Template.home.events({
   "click #applyBtn": function () {
+    console.log(Meteor.user());
     let data = {
       _id: Random.id(),
-      title: this.title,
-      companyname: this.companyname,
-      ceoName: this.ceoName,
       imgId: Meteor.user().profile.imgId,
-      username: Meteor.user().username,
-      age: Meteor.user().profile.age,
-      experience: Meteor.user().profile.experience,
       status: "pending",
       userId: Meteor.userId(),
       cvId: Random.id(),
@@ -60,7 +58,7 @@ Template.home.events({
       jobId: data.jobId,
       userSkills: Meteor.user().profile.skills,
       wishSkills: this.skills,
-      userExperience: data.experience,
+      userExperience: Meteor.user().profile.experience,
       wishExperience: this.experience,
     };
     Meteor.call("checkCvItem", query, function (err) {

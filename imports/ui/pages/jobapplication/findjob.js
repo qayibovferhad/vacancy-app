@@ -1,6 +1,7 @@
 import { Cv, Cv_Files } from "../../../api/cv/collection";
 import { Random } from "meteor/random";
 import "./findjob.html";
+import { Jobs } from "../../../api/jobs/collection";
 
 Template.findjob.onCreated(function () {
   this.loading = new ReactiveVar(false);
@@ -8,19 +9,30 @@ Template.findjob.onCreated(function () {
     this.subscribe("get.cv");
   });
 });
+
 Template.findjob.helpers({
+  getUserInfo: function () {
+    console.log(Meteor.user());
+    return Meteor.user();
+  },
   getLoading: function () {
     return Template.instance().loading.get();
   },
   getMyApplies: function () {
     let userId = Meteor.userId();
-    return Cv.find({ userId }).map(function (cv) {
+    let cv = Cv.find({ userId: userId }).fetch();
+    console.log(cv);
+    return cv.map(function (cv) {
       let status = cv.status;
       if (status === "accepted") {
         cv.isAccepted = true;
       } else if (status === "rejected") {
         cv.isRejected = true;
       }
+
+      const job = Jobs.findOne({ jobId: cv.jobId });
+      cv.job = job;
+
       return cv;
     });
   },

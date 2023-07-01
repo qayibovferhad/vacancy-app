@@ -8,11 +8,20 @@
         <button class="btn btn-primary mb-3" id="downloadCv" data-cv="{{_id}}">
           Download CV
         </button>
+        {{#with (getJobInfo jobId)}}
         <h4 class="card-title">Position: {{title}}</h4>
+        {{/with}} {{#with (getUserInfo userId)}}
+        <h6 class="card-title">
+          Fullname: {{profile.lastname}} {{profile.firstname}}
+        </h6>
         <h6 class="card-title">Username: {{username}}</h6>
-        <h6 class="card-title">Age: {{age}}</h6>
-        <h6 class="card-title">Experience: {{experience}} year</h6>
-        {{#if isAccepted}}
+        <h6 class="card-title">Age: {{profile.age}}</h6>
+        <h6 class="card-title">Experience: {{profile.experience}} year</h6>
+        <h6 class="card-title">Position: {{profile.position}}</h6>
+        <h6 class="card-title">Education: {{profile.education}}</h6>
+        <h6 class="card-title">Skills: {{profile.skills}}</h6>
+
+        {{/with}} {{#if isAccepted}}
         <p class="h6 mt-3 text-success">Your letter has been sent. Thank you</p>
         {{else}} {{#if isRejected}}
         <p class="h6 mt-3 text-danger">

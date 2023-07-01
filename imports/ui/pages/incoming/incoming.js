@@ -1,12 +1,22 @@
 import { Cv, Cv_Files } from "../../../api/cv/collection";
+import { Jobs } from "../../../api/jobs/collection";
 import "./incoming.html";
 
 Template.incoming.onCreated(function () {
   this.autorun(() => {
-    this.subscribe("get.cv");
+    let query = {
+      ownCeoId: Meteor.userId(),
+    };
+    this.subscribe("get.cv", query);
   });
   this.autorun(() => {
-    this.subscribe("get.users");
+    let query = {
+      ownCeoId: Meteor.userId(),
+    };
+    let cvCursor = Cv.find(query);
+    let cvId = cvCursor.map((cv) => cv.userId);
+    console.log(cvId);
+    this.subscribe("get.users", { _id: { $in: cvId } });
   });
 });
 
@@ -17,12 +27,19 @@ Template.incoming.helpers({
   isRejected: function () {
     return this.status === "rejected";
   },
+  getUserInfo: function (userId) {
+    const user = Meteor.users.findOne(userId);
+    return user;
+  },
+  getJobInfo: function (jobId) {
+    const job = Jobs.findOne({ jobId: jobId });
+    return job;
+  },
   getMyIncoming: function () {
     let ceoId = Meteor.userId();
     return Cv.find({ ownCeoId: ceoId }).fetch();
   },
   getImg: function (imgId) {
-    console.log(imgId);
     let cvImage = Cv_Files.findOne({ _id: imgId });
     if (cvImage) {
       return cvImage.name;

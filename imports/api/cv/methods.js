@@ -30,7 +30,7 @@ Meteor.methods({
   checkCvItem(query) {
     const userId = Meteor.userId();
     const existingItem = Cv.findOne({
-      userId: query.userId,
+      userId,
       jobId: query.jobId,
     });
     if (existingItem) {

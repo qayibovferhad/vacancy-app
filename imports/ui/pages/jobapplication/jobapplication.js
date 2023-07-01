@@ -9,7 +9,10 @@ Template.jobapplication.onCreated(function () {
     this.subscribe("get.jobs", query);
   });
   this.autorun(() => {
-    this.subscribe("get.cv");
+    let query = {
+      ownCeoId: Meteor.userId(),
+    };
+    this.subscribe("get.cv", query);
   });
 });
 

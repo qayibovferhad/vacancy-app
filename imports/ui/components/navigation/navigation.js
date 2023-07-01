@@ -9,7 +9,7 @@ Template.navigation.onCreated(function () {
 Template.navigation.helpers({
   getIncomingCount: function () {
     let ceoId = Meteor.userId();
-    return Cv.find({ ownCeoId: ceoId }).count();
+    return Cv.find({ ownCeoId: ceoId, status: "pending" }).count();
   },
   getUserInfo() {
     const currentUser = Meteor.user();

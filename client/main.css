@@ -1,8 +1,46 @@
 body {
+  background-color: #007bff;
+}
+body a {
+  color: white;
+  text-decoration: none;
+}
+body a:hover {
+  color: white !important;
+}
+body label {
+  color: white;
+}
+
+.bg-light {
+  background-color: #007bff !important;
 }
 .navbar {
   background-color: black !important;
 }
 .navbar a {
   color: white !important;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  text-align: center;
+}
+.home .registerButton {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.home .registerButton:hover {
+  cursor: pointer;
+  background-color: white !important;
+  color: green !important;
 }

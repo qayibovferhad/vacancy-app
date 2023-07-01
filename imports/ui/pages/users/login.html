@@ -1,5 +1,5 @@
 <template name="login">
-  <h1 class="text-center">Login</h1>
+  <h1 class="text-center mt-3">Login</h1>
   <form id="loginForm">
     <div class="form-group">
       <label for="firstname">Username</label>
@@ -23,10 +23,11 @@
         placeholder="Password"
       />
     </div>
-    <div class="row">
+    <div class="row mt-2 mb-2">
       <a href="/register">Does not have an account?</a>
+      <a href="/forgotpassword">Forgot Password?</a>
     </div>
 
-    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    <button type="submit" class="btn btn-success mt-2">Submit</button>
   </form>
 </template>
