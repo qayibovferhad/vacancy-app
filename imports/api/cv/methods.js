@@ -1,4 +1,4 @@
-import { Cv } from "./collection";
+import { Cv, Cv_Files } from "./collection";
 
 Meteor.methods({
   "add.cv": function (data) {
@@ -54,5 +54,10 @@ Meteor.methods({
     if (query.userExperience < query.wishExperience) {
       throw new Meteor.Error("Your experience is not allowed to be applied");
     }
+  },
+});
+Meteor.methods({
+  removeCvFile: function (cvId) {
+    Cv_Files.remove({ _id: cvId });
   },
 });

@@ -137,3 +137,13 @@ FlowRouter.route("/incoming", {
     });
   },
 });
+import "../../ui/pages/notFound/notFound";
+FlowRouter.route("*", {
+  name: "App.notFound",
+  action() {
+    BlazeLayout.render("mainLayout", {
+      main: "notFound",
+      login: "notFound",
+    });
+  },
+});

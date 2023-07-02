@@ -74,6 +74,7 @@ Template.incoming.events({
       rejectBtn.disabled = false;
     }
   },
+
   "click .rejectBtn": function () {
     console.log(this);
     let query = {
@@ -81,6 +82,7 @@ Template.incoming.events({
     };
     Meteor.call("update.cv.status", this._id, query, function (err) {});
   },
+
   "submit .acceptForm": function (event, template) {
     console.log(this);
     event.preventDefault();

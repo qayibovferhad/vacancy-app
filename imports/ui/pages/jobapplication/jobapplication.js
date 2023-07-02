@@ -11,6 +11,7 @@ Template.jobapplication.onCreated(function () {
   });
   this.autorun(() => {
     let query = {
+      status: "pending",
       ownCeoId: Meteor.userId(),
     };
     this.subscribe("get.cv", query);

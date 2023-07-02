@@ -5,6 +5,7 @@ import { Jobs } from "../../../api/jobs/collection";
 
 Template.findjob.onCreated(function () {
   this.loading = new ReactiveVar(false);
+
   this.autorun(() => {
     let query = {
       userId: Meteor.userId(),
@@ -18,15 +19,18 @@ Template.findjob.helpers({
     console.log(Meteor.user());
     return Meteor.user();
   },
+
   getLoading: function () {
     return Template.instance().loading.get();
   },
+
   getMyApplies: function () {
     let userId = Meteor.userId();
     let cv = Cv.find({ userId: userId }).fetch();
     console.log(cv);
     return cv.map(function (cv) {
       let status = cv.status;
+
       if (status === "accepted") {
         cv.isAccepted = true;
       } else if (status === "rejected") {
@@ -88,6 +92,19 @@ Template.findjob.events({
         console.log("error", error);
       } else {
         alert(`file: ${fileObj.name} successfully uploaded`);
+        console.log(userId);
+        const user = Meteor.users.findOne({ _id: Meteor.userId() });
+        console.log("usercv:", user);
+        if (user && user.profile.imgId) {
+          console.log("userImgId:", user.profile.imgId);
+          Meteor.call("removeCvFile", user.profile.imgId, function (error) {
+            if (error) {
+              console.log("Hata:", error);
+            } else {
+              console.log("dg");
+            }
+          });
+        }
         data.imgId = fileObj._id;
         Meteor.call("update.userCv", userId, data);
       }
