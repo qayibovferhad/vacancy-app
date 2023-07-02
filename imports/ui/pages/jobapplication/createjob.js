@@ -1,8 +1,13 @@
 import "./createjob.html";
 import { jobValidationText } from "../../../api/jobs/collection";
 import { Random } from "meteor/random";
+import { FlowRouter } from "meteor/ostrio:flow-router-extra";
+
 Template.createjob.onCreated(function () {
-  this.subscribe("get.jobs");
+  let query = {
+    ownCeoId: Meteor.userId(),
+  };
+  this.subscribe("get.jobs", query);
 });
 
 Template.createjob.events({
@@ -43,5 +48,6 @@ Template.createjob.events({
       return;
     }
     Meteor.call("add.job", jobData);
+    FlowRouter.go("/jobapplication");
   },
 });

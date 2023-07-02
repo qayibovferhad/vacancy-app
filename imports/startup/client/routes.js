@@ -1,6 +1,7 @@
 import "../../ui/layout/mainLayout";
 import "../../ui/components/navigation/navigation";
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
+
 const checkCurrentUserAndUser = (context, redirect) => {
   const currentUser = Meteor.userId();
   if (!currentUser) {
@@ -13,6 +14,7 @@ const checkCurrentUserAndUser = (context, redirect) => {
     }
   }
 };
+
 const checkCurrentUserAndCeo = (context, redirect) => {
   const currentUser = Meteor.userId();
   if (!currentUser) {
@@ -25,12 +27,14 @@ const checkCurrentUserAndCeo = (context, redirect) => {
     }
   }
 };
+
 const checkLoginUser = (context, redirect) => {
   const currentUser = Meteor.userId();
   if (currentUser) {
     redirect("/");
   }
 };
+
 import "../../ui/pages/home/home";
 FlowRouter.route("/", {
   name: "App.home",
@@ -60,17 +64,6 @@ FlowRouter.route("/login", {
   action() {
     BlazeLayout.render("mainLayout", {
       login: "login",
-    });
-  },
-});
-
-import "../../ui/pages/users/forgotpassword";
-FlowRouter.route("/forgotpassword", {
-  name: "App.forgotpassword",
-  triggersEnter: [checkLoginUser],
-  action() {
-    BlazeLayout.render("mainLayout", {
-      login: "forgotpassword",
     });
   },
 });

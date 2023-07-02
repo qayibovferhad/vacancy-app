@@ -9,3 +9,17 @@ Meteor.methods({
     return Jobs.remove(jobId);
   },
 });
+Meteor.methods({
+  "update.job": function (jobId, query) {
+    return Jobs.update(
+      { _id: jobId },
+      {
+        $set: {
+          typeofemployment: query.typeofemployment,
+          salary: query.salary,
+          description: query.description,
+        },
+      }
+    );
+  },
+});

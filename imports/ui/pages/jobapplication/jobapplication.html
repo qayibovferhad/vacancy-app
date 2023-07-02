@@ -3,6 +3,7 @@
     <div class="row">
       <div class="my-job-applications mt-4">
         <h1 class="text-center">My Job Applications</h1>
+
         <div class="full-jobs">
           <div class="row">
             {{#each myJobs}}
@@ -16,7 +17,7 @@
                 <h6 class="card-title">Salary: {{salary}}$</h6>
                 <p class="card-text">Description: {{description}}</p>
                 <div class="card-buttons">
-                  <button class="btn btn-warning">Edit</button>
+                  <button class="btn btn-warning" id="editJob">Edit</button>
                   <button class="btn btn-danger" id="removeJob">Remove</button>
                 </div>
               </div>
@@ -24,6 +25,47 @@
             {{/each}}
           </div>
         </div>
+        <form id="editForm">
+          {{#with getClickedJob}}
+          <div class="form-group">
+            <label for="typeofemployment">Type of Employment</label>
+            <input
+              type="text"
+              class="form-control"
+              name="typeofemployment"
+              id="typeofemployment"
+              aria-describedby="emailHelp"
+              placeholder="Type of Employment"
+              value="{{getClickedJob.typeofemployment}}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="salary">Salary</label>
+            <input
+              type="text"
+              class="form-control"
+              name="salary"
+              id="salary"
+              aria-describedby="emailHelp"
+              placeholder="Salary"
+              value="{{getClickedJob.salary}}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input
+              type="text"
+              class="form-control"
+              name="description"
+              id="description"
+              aria-describedby="emailHelp"
+              placeholder="Description"
+              value="{{getClickedJob.description}}"
+            />
+          </div>
+          <button type="submit" class="btn btn-success mt-2">Save</button>
+          {{/with}}
+        </form>
         <div class="create-job d-flex justify-content-center">
           <a href="/createjob" class="text-center btn btn-success mt-5"
             >Create a job application</a

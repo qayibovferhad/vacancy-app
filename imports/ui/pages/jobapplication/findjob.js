@@ -6,7 +6,10 @@ import { Jobs } from "../../../api/jobs/collection";
 Template.findjob.onCreated(function () {
   this.loading = new ReactiveVar(false);
   this.autorun(() => {
-    this.subscribe("get.cv");
+    let query = {
+      userId: Meteor.userId(),
+    };
+    this.subscribe("get.cv", query);
   });
 });
 

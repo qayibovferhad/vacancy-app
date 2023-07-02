@@ -10,7 +10,10 @@ Template.home.onCreated(function () {
     this.subscribe("get.cv", query);
   });
   this.autorun(() => {
-    this.subscribe("get.jobs");
+    const currentUser = Meteor.user();
+    if (currentUser) {
+      this.subscribe("get.jobs");
+    }
   });
   this.autorun(() => {
     const currentUser = Meteor.user();
@@ -48,11 +51,11 @@ Template.home.events({
     let data = {
       _id: Random.id(),
       imgId: Meteor.user().profile.imgId,
-      status: "pending",
       userId: Meteor.userId(),
       cvId: Random.id(),
       jobId: this.jobId,
       ownCeoId: this.ownCeoId,
+      status: "pending",
     };
     let query = {
       jobId: data.jobId,
