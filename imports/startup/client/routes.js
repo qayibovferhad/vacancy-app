@@ -34,6 +34,12 @@ const checkLoginUser = (context, redirect) => {
     redirect("/");
   }
 };
+const checkUser = (context, redirect) => {
+  const currentUser = Meteor.userId();
+  if (!currentUser) {
+    redirect("/login");
+  }
+};
 
 import "../../ui/pages/home/home";
 FlowRouter.route("/", {
@@ -67,6 +73,16 @@ FlowRouter.route("/login", {
     });
   },
 });
+import "../../ui/pages/users/changePassword";
+FlowRouter.route("/changepassword", {
+  name: "App.changePassword",
+  triggersEnter: [checkUser],
+  action() {
+    BlazeLayout.render("mainLayout", {
+      main: "changePassword",
+    });
+  },
+});
 
 import "../../ui/pages/jobapplication/jobapplication";
 FlowRouter.route("/jobapplication", {
@@ -79,7 +95,7 @@ FlowRouter.route("/jobapplication", {
   },
 });
 
-import "../../ui/pages/jobapplication/createjob";
+import "../../ui/pages/createjob/createjob";
 FlowRouter.route("/createjob", {
   name: "App.createjob",
   triggersEnter: [checkCurrentUserAndCeo],
@@ -90,7 +106,7 @@ FlowRouter.route("/createjob", {
   },
 });
 
-import "../../ui/pages/jobapplication/findjob";
+import "../../ui/pages/findjob/findjob";
 FlowRouter.route("/findjob", {
   name: "App.findjob",
   triggersEnter: [checkCurrentUserAndUser],
@@ -101,7 +117,7 @@ FlowRouter.route("/findjob", {
   },
 });
 
-import "../../ui/pages/jobapplication/jobdetail";
+import "../../ui/pages/jobdetail/jobdetail";
 FlowRouter.route("/jobdetail/:_id", {
   name: "App.jobdetail",
   action() {

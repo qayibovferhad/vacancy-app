@@ -8,8 +8,11 @@ Template.login.events({
     let password = $("#password").val();
     console.log(username, password);
     Meteor.loginWithPassword(username, password, function (err) {
-      console.log("err", err);
+      if (err) {
+        console.log("err", err);
+      } else {
+        FlowRouter.go("/");
+      }
     });
-    FlowRouter.go("/");
   },
 });

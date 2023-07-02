@@ -66,7 +66,7 @@ Template.home.events({
     };
     Meteor.call("checkCvItem", query, function (err) {
       if (err) {
-        console.log(err);
+        alert(err.error);
       } else {
         Meteor.call("add.cv", data);
       }
