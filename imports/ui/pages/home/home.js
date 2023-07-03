@@ -4,12 +4,6 @@ import "./home.html";
 Template.home.onCreated(function () {
   this.ceoName = new ReactiveVar();
   this.autorun(() => {
-    let query = {
-      ownCeoId: Meteor.userId(),
-    };
-    this.subscribe("get.cv", query);
-  });
-  this.autorun(() => {
     const currentUser = Meteor.user();
     if (currentUser) {
       this.subscribe("get.jobs");
@@ -68,7 +62,9 @@ Template.home.events({
       if (err) {
         alert(err.error);
       } else {
-        Meteor.call("add.cv", data);
+        Meteor.call("add.cv", data, function (err) {
+          console.log(err);
+        });
       }
     });
   },

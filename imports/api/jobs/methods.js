@@ -3,13 +3,9 @@ Meteor.methods({
   "add.job": function (data) {
     return Jobs.insert(data);
   },
-});
-Meteor.methods({
   "remove.job": function (jobId) {
     return Jobs.remove(jobId);
   },
-});
-Meteor.methods({
   "update.job": function (jobId, query) {
     return Jobs.update(
       { _id: jobId },

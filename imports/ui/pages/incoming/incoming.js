@@ -15,7 +15,6 @@ Template.incoming.onCreated(function () {
     };
     let cvCursor = Cv.find(query);
     let cvId = cvCursor.map((cv) => cv.userId);
-    console.log(cvId);
     this.subscribe("get.users", { _id: { $in: cvId } });
   });
 });
@@ -80,7 +79,11 @@ Template.incoming.events({
     let query = {
       status: "rejected",
     };
-    Meteor.call("update.cv.status", this._id, query, function (err) {});
+    Meteor.call("update.cv.status", this._id, query, function (err) {
+      if (err) {
+        console.log(err);
+      }
+    });
   },
 
   "submit .acceptForm": function (event, template) {

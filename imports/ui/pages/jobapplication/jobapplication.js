@@ -31,7 +31,9 @@ Template.jobapplication.helpers({
 
 Template.jobapplication.events({
   "click #removeJob": function () {
-    Meteor.call("remove.job", this._id);
+    Meteor.call("remove.job", this._id, function (err) {
+      console.log(err);
+    });
   },
   "click #editJob": function (event, template) {
     template.getClickedJob.set(this);
@@ -47,7 +49,12 @@ Template.jobapplication.events({
       salary,
       description,
     };
-    Meteor.call("update.job", clickedJob._id, query);
-    template.getClickedJob.set("");
+    Meteor.call("update.job", clickedJob._id, query, function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        template.getClickedJob.set("");
+      }
+    });
   },
 });

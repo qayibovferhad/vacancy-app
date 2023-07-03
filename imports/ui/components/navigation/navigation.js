@@ -1,16 +1,11 @@
 import "./navigation.html";
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
-import { Cv } from "../../../api/cv/collection";
 Template.navigation.onCreated(function () {
   this.autorun(() => {
     this.subscribe("cv");
   });
 });
 Template.navigation.helpers({
-  getIncomingCount: function () {
-    let ceoId = Meteor.userId();
-    return Cv.find({ ownCeoId: ceoId, status: "pending" }).count();
-  },
   getUserInfo() {
     const currentUser = Meteor.user();
     if (currentUser) {

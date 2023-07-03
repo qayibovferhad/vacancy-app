@@ -14,10 +14,8 @@ Meteor.methods({
     });
     return res;
   },
-});
-Meteor.methods({
   "update.userCv": function (userId, data) {
-    Meteor.users.update(
+    return Meteor.users.update(
       {
         _id: userId,
       },

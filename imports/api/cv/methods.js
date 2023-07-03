@@ -4,18 +4,12 @@ Meteor.methods({
   "add.cv": function (data) {
     return Cv.insert(data);
   },
-});
-Meteor.methods({
   "remove.cv": function (cvId) {
     return Cv.remove(cvId);
   },
-});
-Meteor.methods({
   "update.cv.status": function (cvId, query) {
-    Cv.update(cvId, { $set: { status: query.status } });
+    return Cv.update(cvId, { $set: { status: query.status } });
   },
-});
-Meteor.methods({
   "update.cv.notes": function (cvId, query) {
     const updateQuery = {
       $set: {},
@@ -23,11 +17,9 @@ Meteor.methods({
 
     updateQuery.$set["notes"] = query.notes;
 
-    Cv.update(cvId, updateQuery);
+    return Cv.update(cvId, updateQuery);
   },
-});
-Meteor.methods({
-  checkCvItem(query) {
+  checkCvItem: function (query) {
     const userId = Meteor.userId();
     const existingItem = Cv.findOne({
       userId,
@@ -55,8 +47,6 @@ Meteor.methods({
       throw new Meteor.Error("Your experience is not allowed to be applied");
     }
   },
-});
-Meteor.methods({
   removeCvFile: function (cvId) {
     Cv_Files.remove({ _id: cvId });
   },

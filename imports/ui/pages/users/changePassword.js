@@ -11,8 +11,8 @@ Template.changePassword.events({
         console.log(err);
       } else {
         console.log("success");
+        FlowRouter.go("/");
       }
     });
-    FlowRouter.go("/");
   },
 });

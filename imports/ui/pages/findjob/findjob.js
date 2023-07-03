@@ -16,7 +16,6 @@ Template.findjob.onCreated(function () {
 
 Template.findjob.helpers({
   getUserInfo: function () {
-    console.log(Meteor.user());
     return Meteor.user();
   },
 
@@ -47,7 +46,9 @@ Template.findjob.helpers({
 
 Template.findjob.events({
   "click #removeCv": function () {
-    Meteor.call("remove.cv", this._id);
+    Meteor.call("remove.cv", this._id, function (err) {
+      console.log(err);
+    });
   },
   "click #editCv": function (event, template) {
     $("#editCvForm").toggleClass("d-none");
@@ -93,20 +94,20 @@ Template.findjob.events({
       } else {
         alert(`file: ${fileObj.name} successfully uploaded`);
         console.log(userId);
-        const user = Meteor.users.findOne({ _id: Meteor.userId() });
+        const user = Meteor.user();
         console.log("usercv:", user);
         if (user && user.profile.imgId) {
-          console.log("userImgId:", user.profile.imgId);
           Meteor.call("removeCvFile", user.profile.imgId, function (error) {
             if (error) {
               console.log("Hata:", error);
             } else {
-              console.log("dg");
+              data.imgId = fileObj._id;
+              Meteor.call("update.userCv", userId, data, function (err) {
+                console.log(err);
+              });
             }
           });
         }
-        data.imgId = fileObj._id;
-        Meteor.call("update.userCv", userId, data);
       }
       template.loading.set(false);
     });
@@ -116,6 +117,8 @@ Template.findjob.events({
     document.getElementById("editCvForm").className = "d-none";
   },
   "click #okBtn": function () {
-    Meteor.call("remove.cv", this._id);
+    Meteor.call("remove.cv", this._id, function (err) {
+      console.log(err);
+    });
   },
 });
