@@ -3,12 +3,14 @@ import "./jobapplication.html";
 
 Template.jobapplication.onCreated(function () {
   this.getClickedJob = new ReactiveVar();
+
   this.autorun(() => {
     let query = {
       ownCeoId: Meteor.userId(),
     };
     this.subscribe("get.jobs", query);
   });
+
   this.autorun(() => {
     let query = {
       status: "pending",
@@ -24,6 +26,7 @@ Template.jobapplication.helpers({
       ownCeoId: Meteor.userId(),
     });
   },
+
   getClickedJob: function () {
     return Template.instance().getClickedJob.get();
   },
@@ -35,9 +38,11 @@ Template.jobapplication.events({
       console.log(err);
     });
   },
+
   "click #editJob": function (event, template) {
     template.getClickedJob.set(this);
   },
+
   "submit #editForm": function (event, template) {
     event.preventDefault();
     let typeofemployment = $("#typeofemployment").val();

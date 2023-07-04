@@ -8,6 +8,7 @@ const checkLoginUser = (context, redirect) => {
     redirect("/");
   }
 };
+
 const checkUser = (context, redirect) => {
   const currentUser = Meteor.userId();
   if (!currentUser) {
@@ -47,6 +48,7 @@ FlowRouter.route("/login", {
     });
   },
 });
+
 import "../../ui/pages/users/changePassword";
 FlowRouter.route("/changepassword", {
   name: "App.changePassword",
@@ -111,6 +113,7 @@ FlowRouter.route("/incoming", {
     });
   },
 });
+
 import "../../ui/pages/notFound/notFound";
 FlowRouter.route("*", {
   name: "App.notFound",

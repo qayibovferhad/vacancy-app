@@ -3,13 +3,14 @@ import { Random } from "meteor/random";
 import "./home.html";
 Template.home.onCreated(function () {
   this.jobResults = new ReactiveVar([]);
-  this.ceoName = new ReactiveVar();
+
   this.autorun(() => {
     const currentUser = Meteor.user();
     if (currentUser) {
       this.subscribe("get.jobs");
     }
   });
+
   this.autorun(() => {
     const currentUser = Meteor.user();
     if (
@@ -22,6 +23,7 @@ Template.home.onCreated(function () {
     }
   });
 });
+
 Template.home.helpers({
   currentUserType() {
     const currentUser = Meteor.user();
@@ -55,6 +57,7 @@ Template.home.events({
       ownCeoId: this.ownCeoId,
       status: "pending",
     };
+
     let query = {
       jobId: data.jobId,
       userSkills: Meteor.user().profile.skills,
@@ -62,6 +65,7 @@ Template.home.events({
       userExperience: Meteor.user().profile.experience,
       wishExperience: this.experience,
     };
+
     Meteor.call("checkCvItem", query, function (err) {
       if (err) {
         alert(err.error);
@@ -72,6 +76,7 @@ Template.home.events({
       }
     });
   },
+
   "click #searchButton": function (event, template) {
     const searchWord = $("#searchInput").val().trim();
     const query = {
@@ -80,9 +85,7 @@ Template.home.events({
         { companyname: { $regex: searchWord, $options: "i" } },
       ],
     };
-    template.subscribe("get.jobs", query, () => {
-      const jobResults = Jobs.find(query).fetch();
-      template.jobResults.set(jobResults);
-    });
+    const jobResults = Jobs.find(query).fetch();
+    template.jobResults.set(jobResults);
   },
 });

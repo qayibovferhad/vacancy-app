@@ -24,12 +24,14 @@ Template.jobdetail.helpers({
   getCurrentJob: function () {
     return Jobs.findOne({ _id: Template.instance().jobId.get() });
   },
+
   getSkills: function () {
     const skills = Jobs.findOne({
       _id: Template.instance().jobId.get(),
     }).skills;
     return skills.join(",");
   },
+
   currentUserType() {
     const currentUser = Meteor.user();
     if (currentUser && currentUser.profile && currentUser.profile.typeValue) {

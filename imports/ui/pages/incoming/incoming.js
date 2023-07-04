@@ -15,21 +15,26 @@ Template.incoming.helpers({
   isAccepted: function () {
     return this.status === "accepted";
   },
+
   isRejected: function () {
     return this.status === "rejected";
   },
-  getUserInfo: function (userId) {
-    const user = Meteor.users.findOne(userId);
-    return user;
-  },
+
   getJobInfo: function (jobId) {
     const job = Jobs.findOne({ jobId: jobId });
     return job;
   },
+
+  getUserInfo: function (userId) {
+    const user = Meteor.users.findOne(userId);
+    return user;
+  },
+
   getMyIncoming: function () {
     let ceoId = Meteor.userId();
     return Cv.find({ ownCeoId: ceoId }).fetch();
   },
+
   getImg: function (imgId) {
     let cvImage = Cv_Files.findOne({ _id: imgId });
     if (cvImage) {
@@ -52,6 +57,7 @@ Template.incoming.events({
       link.click();
     }
   },
+
   "click .acceptBtn": function (event, template) {
     const cvId = event.currentTarget.dataset.cv;
     const acceptForm = template.find(`#acceptForm-${cvId}`);
@@ -65,6 +71,7 @@ Template.incoming.events({
       rejectBtn.disabled = false;
     }
   },
+
   "click .rejectBtn": function () {
     console.log(this);
     let query = {

@@ -38,7 +38,6 @@ Template.findjob.helpers({
 
       const job = Jobs.findOne({ jobId: cv.jobId });
       cv.job = job;
-
       return cv;
     });
   },
@@ -55,6 +54,7 @@ Template.findjob.events({
   },
   "submit #editCvForm": function (event, template) {
     event.preventDefault();
+
     let userId = Meteor.user()._id;
     let position = $("#position").val();
     let skills = $("#skills").val();
@@ -63,6 +63,7 @@ Template.findjob.events({
     let education = $("#education").val();
     let skillsArr = skills.split(",");
     let file = document.getElementById("fileUpload").files[0];
+
     let data = {
       position,
       skillsArr,
@@ -87,19 +88,18 @@ Template.findjob.events({
     upload.on("start", function () {
       template.loading.set(true);
     });
+
     upload.on("end", function (error, fileObj) {
       if (error) {
         alert("error: " + error);
-        console.log("error", error);
+        console.log(error);
       } else {
         alert(`file: ${fileObj.name} successfully uploaded`);
-        console.log(userId);
         const user = Meteor.user();
-        console.log("usercv:", user);
         if (user && user.profile.imgId) {
           Meteor.call("removeCvFile", user.profile.imgId, function (error) {
             if (error) {
-              console.log("Hata:", error);
+              console.log(error);
             } else {
               data.imgId = fileObj._id;
               Meteor.call("update.userCv", userId, data, function (err) {
@@ -116,6 +116,7 @@ Template.findjob.events({
 
     document.getElementById("editCvForm").className = "d-none";
   },
+
   "click #okBtn": function () {
     Meteor.call("remove.cv", this._id, function (err) {
       console.log(err);

@@ -47,6 +47,7 @@ Template.createjob.events({
       });
       return;
     }
+
     Meteor.call("add.job", jobData, function (err) {
       if (err) {
         comsole.log(err);
