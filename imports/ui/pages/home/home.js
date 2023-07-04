@@ -2,6 +2,7 @@ import { Jobs } from "../../../api/jobs/collection";
 import { Random } from "meteor/random";
 import "./home.html";
 Template.home.onCreated(function () {
+  this.jobResults = new ReactiveVar([]);
   this.ceoName = new ReactiveVar();
   this.autorun(() => {
     const currentUser = Meteor.user();
@@ -31,6 +32,9 @@ Template.home.helpers({
       }
     }
     return true;
+  },
+  jobResult: function () {
+    return Template.instance().jobResults.get();
   },
   allJobs: function () {
     return Jobs.find({});
@@ -66,6 +70,19 @@ Template.home.events({
           console.log(err);
         });
       }
+    });
+  },
+  "click #searchButton": function (event, template) {
+    const searchWord = $("#searchInput").val().trim();
+    const query = {
+      $or: [
+        { title: { $regex: searchWord, $options: "i" } },
+        { companyname: { $regex: searchWord, $options: "i" } },
+      ],
+    };
+    template.subscribe("get.jobs", query, () => {
+      const jobResults = Jobs.find(query).fetch();
+      template.jobResults.set(jobResults);
     });
   },
 });

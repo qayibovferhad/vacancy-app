@@ -9,14 +9,6 @@ Template.incoming.onCreated(function () {
     };
     this.subscribe("get.cv", query);
   });
-  this.autorun(() => {
-    let query = {
-      ownCeoId: Meteor.userId(),
-    };
-    let cvCursor = Cv.find(query);
-    let cvId = cvCursor.map((cv) => cv.userId);
-    this.subscribe("get.users", { _id: { $in: cvId } });
-  });
 });
 
 Template.incoming.helpers({
@@ -61,7 +53,7 @@ Template.incoming.events({
     }
   },
   "click .acceptBtn": function (event, template) {
-    const cvId = event.currentTarget.dataset.cv; // event.currentTarget kullanıldı
+    const cvId = event.currentTarget.dataset.cv;
     const acceptForm = template.find(`#acceptForm-${cvId}`);
     const rejectBtn = template.find(`#rejectCv-${cvId}`);
 

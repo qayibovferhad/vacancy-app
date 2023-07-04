@@ -21,6 +21,13 @@ Meteor.publishComposite("get.cv", function (query = {}) {
           }
         },
       },
+      {
+        find(cv) {
+          if (cv.userId) {
+            return Meteor.users.find({ _id: cv.userId });
+          }
+        },
+      },
     ],
   };
 });

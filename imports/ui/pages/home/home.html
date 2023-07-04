@@ -3,6 +3,40 @@
     <div class="container mt-5">
       {{#if currentUser}}
       <div class="row">
+        <div class="col-lg-6 mb-3">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              id="searchInput"
+              placeholder="Search jobs or company.."
+            />
+            <button class="btn btn-success" id="searchButton">Search</button>
+          </div>
+        </div>
+      </div>
+      {{#if jobResult}}
+      <div class="row">
+        {{#each jobResult}}
+        <div class="card col-lg-3 mx-2 mt-4" style="width: 18rem">
+          <div class="card-body">
+            <h4 class="card-title">Position: {{title}}</h4>
+            <h6 class="card-title">Company Name: {{companyname}}</h6>
+            <h6 class="card-title">Type of Employment: {{typeofemployment}}</h6>
+            <h6 class="card-title">Salary: {{salary}}$</h6>
+            <h6 class="card-title">Date: {{formatDate createdAt}}</h6>
+            <h6 class="card-title">Ceo Name: {{ceoName}}</h6>
+            {{#if currentUserType}}
+            <a class="btn btn-success" id="applyBtn">Apply</a>
+            {{/if}}
+            <a href="/jobdetail/{{_id}}" class="btn btn-primary">Job detail</a>
+          </div>
+        </div>
+
+        {{/each}}
+      </div>
+      {{else}}
+      <div class="row">
         {{#each allJobs}}
         <div class="card col-lg-3 mx-2 mt-4" style="width: 18rem">
           <div class="card-body">
@@ -20,10 +54,31 @@
         </div>
         {{/each}}
       </div>
+      {{/if}}
       <div id="alertWindow"></div>
-      {{else}}
+
+      {{#if jobResults}}
+      <div class="row">
+        {{#each jobResults}}
+        <div class="card col-lg-3 mx-2 mt-4" style="width: 18rem">
+          <div class="card-body">
+            <h4 class="card-title">Position: {{title}}</h4>
+            <h6 class="card-title">Company Name: {{companyname}}</h6>
+            <h6 class="card-title">Type of Employment: {{typeofemployment}}</h6>
+            <h6 class="card-title">Salary: {{salary}}$</h6>
+            <h6 class="card-title">Date: {{formatDate createdAt}}</h6>
+            <h6 class="card-title">Ceo Name: {{ceoName}}</h6>
+            {{#if currentUserType}}
+            <a class="btn btn-success" id="applyBtn">Apply</a>
+            {{/if}}
+            <a href="/jobdetail/{{_id}}" class="btn btn-primary">Job detail</a>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      {{/if}} {{else}}
       <section class="home">
-        <h1 class="text-center">Welcome our site</h1>
+        <h1 class="text-center">Welcome to our site</h1>
         <h1 class="text-center">
           If you want to find a job, you are at the right address
         </h1>
@@ -32,7 +87,6 @@
           <a href="/register" class="registerButton">Register</a>
         </div>
       </section>
-
       {{/if}}
     </div>
   </div>
