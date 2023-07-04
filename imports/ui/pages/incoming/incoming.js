@@ -61,7 +61,7 @@ Template.incoming.events({
     }
   },
   "click .acceptBtn": function (event, template) {
-    const cvId = event.target.dataset.cv;
+    const cvId = event.currentTarget.dataset.cv; // event.currentTarget kullanıldı
     const acceptForm = template.find(`#acceptForm-${cvId}`);
     const rejectBtn = template.find(`#rejectCv-${cvId}`);
 
@@ -73,7 +73,6 @@ Template.incoming.events({
       rejectBtn.disabled = false;
     }
   },
-
   "click .rejectBtn": function () {
     console.log(this);
     let query = {
@@ -86,11 +85,11 @@ Template.incoming.events({
     });
   },
 
-  "submit .acceptForm": function (event, template) {
+  "submit form.acceptForm": function (event, template) {
     console.log(this);
     event.preventDefault();
     let cvId = this._id;
-    let acceptNote = $(".acceptInput").val();
+    let acceptNote = $(event.currentTarget).find(".acceptInput").val();
     let query = {
       status: "accepted",
       notes: acceptNote,

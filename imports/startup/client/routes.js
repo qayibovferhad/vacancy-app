@@ -2,32 +2,6 @@ import "../../ui/layout/mainLayout";
 import "../../ui/components/navigation/navigation";
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 
-const checkCurrentUserAndUser = (context, redirect) => {
-  const currentUser = Meteor.userId();
-  if (!currentUser) {
-    redirect("/login");
-  } else {
-    const currentUserType = Meteor.user()?.profile?.typeValue;
-    console.log(currentUserType);
-    if (currentUserType !== "user") {
-      redirect("/");
-    }
-  }
-};
-
-const checkCurrentUserAndCeo = (context, redirect) => {
-  const currentUser = Meteor.userId();
-  if (!currentUser) {
-    redirect("/login");
-  } else {
-    const currentUserType = Meteor.user()?.profile?.typeValue;
-    console.log(currentUserType);
-    if (currentUserType !== "ceo") {
-      redirect("/");
-    }
-  }
-};
-
 const checkLoginUser = (context, redirect) => {
   const currentUser = Meteor.userId();
   if (currentUser) {
@@ -87,7 +61,7 @@ FlowRouter.route("/changepassword", {
 import "../../ui/pages/jobapplication/jobapplication";
 FlowRouter.route("/jobapplication", {
   name: "App.jobapplication",
-  triggersEnter: [checkCurrentUserAndCeo],
+  triggersEnter: [checkUser],
   action() {
     BlazeLayout.render("mainLayout", {
       main: "jobapplication",
@@ -98,7 +72,7 @@ FlowRouter.route("/jobapplication", {
 import "../../ui/pages/createjob/createjob";
 FlowRouter.route("/createjob", {
   name: "App.createjob",
-  triggersEnter: [checkCurrentUserAndCeo],
+  triggersEnter: [checkUser],
   action() {
     BlazeLayout.render("mainLayout", {
       main: "createjob",
@@ -109,7 +83,7 @@ FlowRouter.route("/createjob", {
 import "../../ui/pages/findjob/findjob";
 FlowRouter.route("/findjob", {
   name: "App.findjob",
-  triggersEnter: [checkCurrentUserAndUser],
+  triggersEnter: [checkUser],
   action() {
     BlazeLayout.render("mainLayout", {
       main: "findjob",
@@ -130,7 +104,7 @@ FlowRouter.route("/jobdetail/:_id", {
 import "../../ui/pages/incoming/incoming";
 FlowRouter.route("/incoming", {
   name: "App.incoming",
-  triggersEnter: [checkCurrentUserAndCeo],
+  triggersEnter: [checkUser],
   action() {
     BlazeLayout.render("mainLayout", {
       main: "incoming",
