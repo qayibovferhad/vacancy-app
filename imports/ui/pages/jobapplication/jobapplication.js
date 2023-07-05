@@ -49,11 +49,13 @@ Template.jobapplication.events({
     let salary = $("#salary").val();
     let description = $("#description").val();
     let clickedJob = template.getClickedJob.get();
+
     let query = {
       typeofemployment,
       salary,
       description,
     };
+
     Meteor.call("update.job", clickedJob._id, query, function (err) {
       if (err) {
         console.log(err);

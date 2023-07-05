@@ -43,8 +43,13 @@ Template.register.events({
     }
 
     if (firstname && lastname && username && email && password && typeValue) {
-      Meteor.call("add.user", data);
-      FlowRouter.go("/login");
+      Meteor.call("add.user", data, function (err) {
+        if (err) {
+          console.log(err);
+        } else {
+          FlowRouter.go("/login");
+        }
+      });
     } else {
       let alertWindow = document.querySelector(".alertWindow");
       alertWindow.innerHTML = `<h1> Please fill all fields</h1>`;

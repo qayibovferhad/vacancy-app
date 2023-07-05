@@ -23,6 +23,7 @@ FlowRouter.route("/", {
     BlazeLayout.render("mainLayout", {
       main: "home",
       login: "home",
+      ceo: "home",
     });
   },
 });
@@ -56,6 +57,7 @@ FlowRouter.route("/changepassword", {
   action() {
     BlazeLayout.render("mainLayout", {
       main: "changePassword",
+      ceo: "changePassword",
     });
   },
 });
@@ -66,7 +68,7 @@ FlowRouter.route("/jobapplication", {
   triggersEnter: [checkUser],
   action() {
     BlazeLayout.render("mainLayout", {
-      main: "jobapplication",
+      ceo: "jobapplication",
     });
   },
 });
@@ -77,7 +79,7 @@ FlowRouter.route("/createjob", {
   triggersEnter: [checkUser],
   action() {
     BlazeLayout.render("mainLayout", {
-      main: "createjob",
+      ceo: "createjob",
     });
   },
 });
@@ -96,9 +98,11 @@ FlowRouter.route("/findjob", {
 import "../../ui/pages/jobdetail/jobdetail";
 FlowRouter.route("/jobdetail/:_id", {
   name: "App.jobdetail",
+  triggersEnter: [checkUser],
   action() {
     BlazeLayout.render("mainLayout", {
       main: "jobdetail",
+      ceo: "jobdetail",
     });
   },
 });
@@ -109,7 +113,7 @@ FlowRouter.route("/incoming", {
   triggersEnter: [checkUser],
   action() {
     BlazeLayout.render("mainLayout", {
-      main: "incoming",
+      ceo: "incoming",
     });
   },
 });
@@ -120,7 +124,7 @@ FlowRouter.route("*", {
   action() {
     BlazeLayout.render("mainLayout", {
       main: "notFound",
-      login: "notFound",
+      ceo: "notFound",
     });
   },
 });

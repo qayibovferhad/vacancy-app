@@ -94,7 +94,6 @@ Template.findjob.events({
         alert("error: " + error);
         console.log(error);
       } else {
-        alert(`file: ${fileObj.name} successfully uploaded`);
         const user = Meteor.user();
         if (user && user.profile.imgId) {
           Meteor.call("removeCvFile", user.profile.imgId, function (error) {

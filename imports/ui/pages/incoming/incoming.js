@@ -48,6 +48,7 @@ Template.incoming.events({
     const cvId = event.target.dataset.cv;
     const cv = Cv.findOne(cvId);
     const cvFile = Cv_Files.findOne(cv.imgId);
+
     if (cvFile) {
       const fileUrl = cvFile.link();
       const fileName = cvFile.name;
@@ -73,7 +74,6 @@ Template.incoming.events({
   },
 
   "click .rejectBtn": function () {
-    console.log(this);
     let query = {
       status: "rejected",
     };
@@ -85,7 +85,6 @@ Template.incoming.events({
   },
 
   "submit form.acceptForm": function (event, template) {
-    console.log(this);
     event.preventDefault();
     let cvId = this._id;
     let acceptNote = $(event.currentTarget).find(".acceptInput").val();

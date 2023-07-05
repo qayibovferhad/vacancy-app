@@ -10,7 +10,6 @@ Template.changePassword.events({
       if (err) {
         console.log(err);
       } else {
-        console.log("success");
         FlowRouter.go("/");
       }
     });

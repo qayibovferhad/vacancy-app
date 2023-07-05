@@ -50,7 +50,7 @@ Template.createjob.events({
 
     Meteor.call("add.job", jobData, function (err) {
       if (err) {
-        comsole.log(err);
+        console.log(err);
       } else {
         FlowRouter.go("/jobapplication");
       }

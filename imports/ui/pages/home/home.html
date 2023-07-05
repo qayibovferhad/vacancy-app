@@ -12,6 +12,9 @@
               placeholder="Search jobs or company.."
             />
             <button class="btn btn-success" id="searchButton">Search</button>
+            <button class="btn mx-4" id="sortBtn">
+              <i style="font-size: 24px" class="fa-solid fa-arrows-up-down"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -56,27 +59,7 @@
       </div>
       {{/if}}
       <div id="alertWindow"></div>
-
-      {{#if jobResults}}
-      <div class="row">
-        {{#each jobResults}}
-        <div class="card col-lg-3 mx-2 mt-4" style="width: 18rem">
-          <div class="card-body">
-            <h4 class="card-title">Position: {{title}}</h4>
-            <h6 class="card-title">Company Name: {{companyname}}</h6>
-            <h6 class="card-title">Type of Employment: {{typeofemployment}}</h6>
-            <h6 class="card-title">Salary: {{salary}}$</h6>
-            <h6 class="card-title">Date: {{formatDate createdAt}}</h6>
-            <h6 class="card-title">Ceo Name: {{ceoName}}</h6>
-            {{#if currentUserType}}
-            <a class="btn btn-success" id="applyBtn">Apply</a>
-            {{/if}}
-            <a href="/jobdetail/{{_id}}" class="btn btn-primary">Job detail</a>
-          </div>
-        </div>
-        {{/each}}
-      </div>
-      {{/if}} {{else}}
+      {{else}}
       <section class="home">
         <h1 class="text-center">Welcome to our site</h1>
         <h1 class="text-center">

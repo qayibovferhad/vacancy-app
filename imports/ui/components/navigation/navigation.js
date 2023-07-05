@@ -1,10 +1,12 @@
 import "./navigation.html";
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
+
 Template.navigation.onCreated(function () {
   this.autorun(() => {
     this.subscribe("cv");
   });
 });
+
 Template.navigation.helpers({
   getUserInfo() {
     const currentUser = Meteor.user();
@@ -13,6 +15,7 @@ Template.navigation.helpers({
     }
     return [];
   },
+
   currentUserCeo() {
     const currentUser = Meteor.user();
     if (currentUser && currentUser.profile && currentUser.profile.typeValue) {
@@ -24,6 +27,7 @@ Template.navigation.helpers({
     return false;
   },
 });
+
 Template.navigation.events({
   "click #logoutBtn": function (event, template) {
     Meteor.logout();

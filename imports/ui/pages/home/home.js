@@ -1,8 +1,10 @@
 import { Jobs } from "../../../api/jobs/collection";
 import { Random } from "meteor/random";
 import "./home.html";
+
 Template.home.onCreated(function () {
   this.jobResults = new ReactiveVar([]);
+  this.sortByDateAscending = new ReactiveVar(true);
 
   this.autorun(() => {
     const currentUser = Meteor.user();
@@ -47,7 +49,6 @@ Template.home.helpers({
 });
 Template.home.events({
   "click #applyBtn": function () {
-    console.log(Meteor.user());
     let data = {
       _id: Random.id(),
       imgId: Meteor.user().profile.imgId,
@@ -87,5 +88,13 @@ Template.home.events({
     };
     const jobResults = Jobs.find(query).fetch();
     template.jobResults.set(jobResults);
+  },
+  "click #sortBtn": function (event, template) {
+    let sortByDateOptions = {
+      sort: { createdAt: template.sortByDateAscending.get() ? 1 : -1 },
+    };
+    let jobs = Jobs.find({}, sortByDateOptions).fetch();
+    template.jobResults.set(jobs);
+    template.sortByDateAscending.set(!template.sortByDateAscending.get());
   },
 });
